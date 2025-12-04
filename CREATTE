@@ -1,0 +1,299 @@
+import React, { useState } from "react";
+
+export default function CreatteLanding() {
+  const [form, setForm] = useState({
+    name: "",
+    business: "",
+    objective: "Aumentar ventas",
+    contact: "",
+    budget: "",
+  });
+  const [sending, setSending] = useState(false);
+  const [sent, setSent] = useState(false);
+
+  function handleChange(e) {
+    const { name, value } = e.target;
+    setForm((s) => ({ ...s, [name]: value }));
+  }
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    setSending(true);
+    // Simulación de envío: crear mailto con los datos del formulario
+    const subject = encodeURIComponent(`Solicitud CREATTE - ${form.name}`);
+    const body = encodeURIComponent(
+      `Nombre: ${form.name}\nNegocio: ${form.business}\nObjetivo: ${form.objective}\nContacto: ${form.contact}\nPresupuesto aproximado: ${form.budget}`
+    );
+    const mailto = `mailto:hola@creatte.com?subject=${subject}&body=${body}`;
+
+    // Abrir cliente de correo del usuario
+    window.location.href = mailto;
+
+    // Simular respuesta rápida en UI
+    setTimeout(() => {
+      setSending(false);
+      setSent(true);
+    }, 800);
+  }
+
+  return (
+    <div className="min-h-screen bg-white text-gray-800 antialiased">
+      {/* NAV */}
+      <header className="max-w-6xl mx-auto p-6 flex items-center justify-between">
+        <div className="flex items-center gap-3">
+          <div className="w-10 h-10 bg-gray-900 text-white rounded-full flex items-center justify-center font-bold">C</div>
+          <div>
+            <div className="font-semibold">CREATTE</div>
+            <div className="text-xs text-gray-500">Agencia creativa–estratégica</div>
+          </div>
+        </div>
+        <nav className="hidden md:flex items-center gap-6 text-sm">
+          <a href="#services" className="hover:underline">Servicios</a>
+          <a href="#course" className="hover:underline">Cursos</a>
+          <a href="#lead" className="hover:underline">Trabaja con nosotros</a>
+          <a href="#portfolio" className="hover:underline">Portafolio</a>
+        </nav>
+        <a href="#lead" className="ml-4 inline-block bg-black text-white px-4 py-2 rounded-full text-sm">Contacto</a>
+      </header>
+
+      {/* HERO */}
+      <section className="bg-gradient-to-r from-white via-gray-50 to-white border-b">
+        <div className="max-w-6xl mx-auto px-6 py-16 grid md:grid-cols-2 gap-12 items-center">
+          <div>
+            <h1 className="text-4xl md:text-5xl font-extrabold leading-tight">Creamos marcas que venden y creadores que crecen.</h1>
+            <p className="mt-6 text-lg text-gray-600">Transforma tus ideas en contenido estratégico, convierte likes en clientes y domina el juego digital con CREATTE: diseño, ads y embudos hechos para resultados.</p>
+
+            <div className="mt-8 flex gap-4 items-center">
+              <a href="#lead" className="bg-black text-white px-6 py-3 rounded-full font-medium shadow">Quiero elevar mi marca</a>
+              <a href="#course" className="border border-gray-300 px-6 py-3 rounded-full text-sm">Ver cursos digitales</a>
+            </div>
+
+            <div className="mt-8 grid grid-cols-2 gap-3 text-sm text-gray-500">
+              <div className="p-3 bg-white border rounded">Estrategias que venden</div>
+              <div className="p-3 bg-white border rounded">Diseño & branding</div>
+              <div className="p-3 bg-white border rounded">Embudo de ventas</div>
+              <div className="p-3 bg-white border rounded">Publicidad inteligente</div>
+            </div>
+          </div>
+
+          <div className="relative">
+            <div className="rounded-2xl overflow-hidden shadow-lg">
+              <img src="https://images.unsplash.com/photo-1529909836933-4f5f7b9f1b8b?q=80&w=1400&auto=format&fit=crop&ixlib=rb-4.0.3&s=placeholder" alt="Hero mockup" className="w-full h-80 object-cover" />
+            </div>
+            <div className="absolute -bottom-6 left-6 bg-white rounded-xl p-4 shadow grid grid-cols-2 gap-4 w-[320px]">
+              <div>
+                <div className="text-xs text-gray-500">Campaña</div>
+                <div className="font-semibold">Lanzamiento 360°</div>
+              </div>
+              <div className="text-right">
+                <div className="text-xs text-gray-500">Resultados</div>
+                <div className="font-semibold">+35% ventas</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* WHAT IS CREATTE */}
+      <section className="max-w-6xl mx-auto px-6 py-16">
+        <div className="grid md:grid-cols-2 gap-10 items-center">
+          <div>
+            <h2 className="text-2xl font-bold">¿Qué es CREATTE?</h2>
+            <p className="mt-4 text-gray-600">CREATTE es una agencia creativa–estratégica que impulsa el crecimiento digital de marcas y emprendedores mediante diseño profesional, publicidad inteligente y sistemas de conversión construidos para generar resultados reales.</p>
+
+            <div className="mt-6 grid grid-cols-1 sm:grid-cols-3 gap-4">
+              <div className="p-4 border rounded">
+                <div className="font-semibold">Crear</div>
+                <div className="text-sm text-gray-500">Diseño con intención</div>
+              </div>
+              <div className="p-4 border rounded">
+                <div className="font-semibold">Distribuir</div>
+                <div className="text-sm text-gray-500">Ads y estrategia</div>
+              </div>
+              <div className="p-4 border rounded">
+                <div className="font-semibold">Ganar</div>
+                <div className="text-sm text-gray-500">Conversión real</div>
+              </div>
+            </div>
+          </div>
+
+          <div className="bg-gray-50 p-6 rounded-lg">
+            <h3 className="font-semibold">Nuestra metodología</h3>
+            <ol className="mt-4 space-y-3 text-gray-600">
+              <li>1. Diagnóstico y estrategia</li>
+              <li>2. Diseño y creación de piezas</li>
+              <li>3. Lanzamiento con ads</li>
+              <li>4. Optimización y automatización</li>
+            </ol>
+          </div>
+        </div>
+      </section>
+
+      {/* SERVICES */}
+      <section id="services" className="bg-white border-t border-b">
+        <div className="max-w-6xl mx-auto px-6 py-16">
+          <h2 className="text-2xl font-bold">Servicios principales</h2>
+          <p className="text-gray-600 mt-2">Soluciones integrales para marcas que quieren crecer con estrategia.</p>
+
+          <div className="mt-8 grid md:grid-cols-3 gap-6">
+            <article className="p-6 border rounded-lg">
+              <h4 className="font-semibold">Diseño de Contenido & Social Ads</h4>
+              <p className="text-sm text-gray-600 mt-2">Piezas para redes, mockups, animaciones y estrategias creativas para anuncios.</p>
+              <ul className="mt-3 text-sm text-gray-500 space-y-1">
+                <li>• Grids y carruseles</li>
+                <li>• Creatividades para ads</li>
+                <li>• Mockups y presentaciones</li>
+              </ul>
+            </article>
+
+            <article className="p-6 border rounded-lg">
+              <h4 className="font-semibold">Embudos de Venta & Automatización</h4>
+              <p className="text-sm text-gray-600 mt-2">Construcción de funnels, páginas de aterrizaje y automatizaciones que convierten.</p>
+              <ul className="mt-3 text-sm text-gray-500 space-y-1">
+                <li>• Landing pages</li>
+                <li>• Secuencias de email</li>
+                <li>• Integración con pasarelas</li>
+              </ul>
+            </article>
+
+            <article className="p-6 border rounded-lg">
+              <h4 className="font-semibold">Consultorías Personalizadas</h4>
+              <p className="text-sm text-gray-600 mt-2">Análisis de marca y sesiones estratégicas para potenciar resultados.</p>
+              <ul className="mt-3 text-sm text-gray-500 space-y-1">
+                <li>• Auditorías</li>
+                <li>• Estrategia de contenido</li>
+                <li>• Soporte en campañas</li>
+              </ul>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      {/* TESTIMONIALS */}
+      <section className="max-w-6xl mx-auto px-6 py-16">
+        <h3 className="text-xl font-bold">Lo que dicen nuestros clientes</h3>
+        <div className="mt-6 grid md:grid-cols-3 gap-6">
+          <blockquote className="p-6 border rounded-lg">“Mi marca ahora se siente profesional y mis ventas subieron en dos semanas.” — Ana, emprendedora</blockquote>
+          <blockquote className="p-6 border rounded-lg">“CREATTE me ayudó a organizar mi embudo y ahora tengo clientes constantes.” — Luis, coach</blockquote>
+          <blockquote className="p-6 border rounded-lg">“Contenido estratégico que realmente convierte.” — Carla, tienda online</blockquote>
+        </div>
+      </section>
+
+      {/* COURSE */}
+      <section id="course" className="bg-gradient-to-r from-gray-50 to-white border-t">
+        <div className="max-w-6xl mx-auto px-6 py-16 grid md:grid-cols-2 gap-10 items-center">
+          <div>
+            <h3 className="text-2xl font-bold">Curso Premium: CREA • CONVIERTE • GANA</h3>
+            <p className="mt-4 text-gray-600">Un curso práctico para emprendedores y creadores que quieren aprender a diseñar contenido que vende, lanzar anuncios efectivos y construir embudos que conviertan.</p>
+
+            <ul className="mt-6 text-sm text-gray-600 space-y-2">
+              <li>• Módulo 1: Fundamentos del contenido que vende</li>
+              <li>• Módulo 2: Social Ads paso a paso</li>
+              <li>• Módulo 3: Embudos y automatizaciones</li>
+              <li>• Módulo 4: Creación de catálogo digital</li>
+            </ul>
+
+            <div className="mt-6 flex gap-3">
+              <a href="#" className="bg-black text-white px-5 py-3 rounded-full">Comprar curso</a>
+              <a href="#" className="border px-5 py-3 rounded-full">Ver temario</a>
+            </div>
+          </div>
+
+          <div className="p-6 bg-white border rounded-lg shadow-sm">
+            <div className="text-sm text-gray-500">Lo que incluye</div>
+            <ul className="mt-3 space-y-2 text-gray-700">
+              <li>✔ Acceso a videos y recursos</li>
+              <li>✔ Plantillas prácticas</li>
+              <li>✔ Comunidad privada</li>
+              <li>✔ Sesión de Q&A en vivo</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      {/* LEAD FORM */}
+      <section id="lead" className="max-w-4xl mx-auto px-6 py-16">
+        <div className="bg-white border rounded-lg p-8">
+          <h3 className="text-2xl font-bold">Quiero que CREATTE trabaje mi marca</h3>
+          <p className="text-gray-600 mt-2">Déjanos tus datos y en menos de 24 horas te contactamos con una propuesta personalizada.</p>
+
+          <form onSubmit={handleSubmit} className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-4">
+            <input required name="name" value={form.name} onChange={handleChange} placeholder="Nombre" className="p-3 border rounded" />
+            <input required name="business" value={form.business} onChange={handleChange} placeholder="Negocio" className="p-3 border rounded" />
+            <select name="objective" value={form.objective} onChange={handleChange} className="p-3 border rounded">
+              <option>Aumentar ventas</option>
+              <option>Mejorar imagen de marca</option>
+              <option>Lanzamiento de producto</option>
+              <option>Quiero aprender (curso)</option>
+            </select>
+            <input required name="contact" value={form.contact} onChange={handleChange} placeholder="WhatsApp o email" className="p-3 border rounded" />
+            <input name="budget" value={form.budget} onChange={handleChange} placeholder="Presupuesto aproximado (opcional)" className="p-3 border rounded md:col-span-2" />
+
+            <div className="md:col-span-2 flex items-center gap-4">
+              <button type="submit" disabled={sending} className="bg-black text-white px-6 py-3 rounded-full">{sending ? 'Enviando...' : 'Enviar solicitud'}</button>
+              <div className="text-sm text-gray-500">O chatea con nosotros por WhatsApp: <a href="https://wa.me/%%PHONE%%" className="text-black underline">Envíanos un mensaje</a></div>
+            </div>
+
+            {sent && <div className="md:col-span-2 text-green-600">¡Gracias! Abrimos tu correo para completar el contacto.</div>}
+          </form>
+        </div>
+      </section>
+
+      {/* PORTFOLIO PREVIEW */}
+      <section id="portfolio" className="max-w-6xl mx-auto px-6 py-16">
+        <h3 className="text-xl font-bold">Portafolio</h3>
+        <p className="text-gray-600 mt-2">Algunos proyectos seleccionados.</p>
+        <div className="mt-6 grid md:grid-cols-3 gap-6">
+          <div className="rounded-lg overflow-hidden border">
+            <img src="https://images.unsplash.com/photo-1503023345310-bd7c1de61c7d?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=placeholder" alt="Project 1" className="w-full h-44 object-cover" />
+            <div className="p-4">
+              <div className="font-semibold">Lanzamiento e‑commerce</div>
+              <div className="text-sm text-gray-500">Estrategia y ads</div>
+            </div>
+          </div>
+
+          <div className="rounded-lg overflow-hidden border">
+            <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=placeholder" alt="Project 2" className="w-full h-44 object-cover" />
+            <div className="p-4">
+              <div className="font-semibold">Branding para emprendedor</div>
+              <div className="text-sm text-gray-500">Identidad y contenido</div>
+            </div>
+          </div>
+
+          <div className="rounded-lg overflow-hidden border">
+            <img src="https://images.unsplash.com/photo-1519337265831-281ec6cc8514?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=placeholder" alt="Project 3" className="w-full h-44 object-cover" />
+            <div className="p-4">
+              <div className="font-semibold">Curso y embudo</div>
+              <div className="text-sm text-gray-500">Producto digital</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* FOOTER */}
+      <footer className="border-t mt-12">
+        <div className="max-w-6xl mx-auto px-6 py-10 grid md:grid-cols-3 gap-6 items-start">
+          <div>
+            <div className="font-bold">CREATTE</div>
+            <div className="text-sm text-gray-500 mt-2">Agencia creativa–estratégica. Diseño, ads y embudos para marcas que quieren crecer.</div>
+          </div>
+
+          <div>
+            <div className="font-semibold">Servicios</div>
+            <ul className="mt-2 text-sm text-gray-600 space-y-1">
+              <li>Diseño & Contenido</li>
+              <li>Embudo & Automatización</li>
+              <li>Consultorías</li>
+            </ul>
+          </div>
+
+          <div>
+            <div className="font-semibold">Contacto</div>
+            <div className="text-sm text-gray-600 mt-2">hola@creatte.com<br/>Instagram: @creatte</div>
+          </div>
+        </div>
+        <div className="text-center text-sm text-gray-500 py-4">© {new Date().getFullYear()} CREATTE. Todos los derechos reservados.</div>
+      </footer>
+    </div>
+  );
+}
